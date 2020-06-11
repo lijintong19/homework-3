@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--nameSpace指定一个对应的Dao接口-->
+<mapper namespace="com.lijintong.mapper.CustomerMapper">
+
+    <select id="queryCustomerList" resultType="com.lijintong.model.Customer">
+        select * from customerinfo
+    </select>
+
+    <select id="queryCustomerById" resultType="com.lijintong.model.Customer">
+        select * from customerinfo where cust_id=#{id}
+    </select>
+
+    <insert id="addCustomer" parameterType="Customer">
+        insert into customerinfo (cust_id,surname, gender, educa_des, mar_des, birthday, address)
+        values (#{cust_id},#{surname},#{gender},#{educa_des},#{mar_des},#{birthday},#{address})
+    </insert>
+
+    <update id="updateCustomer" parameterType="Customer">
+        update customerinfo set surname=#{surname},gender=#{gender},educa_des=#{educa_des},
+        mar_des=#{mar_des},birthday=#{birthday},address=#{address} where cust_id=#{cust_id}
+    </update>
+
+    <delete id="deleteCustomer" parameterType="int">
+        delete from customerinfo where cust_id=#{id}
+    </delete>
+
+</mapper>

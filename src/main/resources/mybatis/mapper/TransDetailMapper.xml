@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--nameSpace指定一个对应的Dao接口-->
+<mapper namespace="com.lijintong.mapper.TransDetailMapper">
+
+    <select id="queryTransDetail" resultType="com.lijintong.model.TransDetail">
+        select * from transdetail
+    </select>
+
+    <select id="queryTransDetailById" resultType="com.lijintong.model.TransDetail">
+        select * from transdetail where trans_id=#{trans_id}
+    </select>
+
+    <insert id="addTransDetail" parameterType="TransDetail">
+        insert into transdetail (trans_id,cust_id,account,card_nbr,tranno,month_nbr,bill,trans_type,txn_datetime)
+        values (#{trans_id},#{cust_id},#{account},#{card_nbr},#{tranno},#{month_nbr},#{bill},#{trans_type},#{txn_datetime})
+    </insert>
+
+    <update id="updateTransDetail" parameterType="TransDetail">
+        update transdetail set cust_id=#{cust_id},account=#{account},card_nbr=#{card_nbr},
+        tranno=#{tranno},month_nbr=#{month_nbr},bill=#{bill},trans_type=#{trans_type},txn_datetime=#{txn_datetime} where trans_id=#{trans_id}
+    </update>
+
+    <delete id="deleteTransDetail" parameterType="int">
+        delete from transdetail where trans_id=#{trans_id}
+    </delete>
+</mapper>

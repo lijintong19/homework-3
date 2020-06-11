@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--nameSpace指定一个对应的Dao接口-->
+<mapper namespace="com.lijintong.mapper.DailySumMapper">
+
+    <select id="queryAll" resultType="com.lijintong.model.DailySum">
+        select * from daily_sum_sta
+    </select>
+
+    <select id="queryDailySumById" resultType="com.lijintong.model.DailySum">
+        select * from daily_sum_sta where s_index=#{s_index}
+    </select>
+
+    <insert id="addDailySum" parameterType="DailySum">
+        insert into daily_sum_sta (s_index,cust_id,update_time,trans_date,surname,tran_max_amt,pay_amt,tran_cnt,pay_cut,tran_amt)
+        values (#{s_index},#{cust_id},#{update_time},#{trans_date},#{surname},#{tran_max_amt},#{pay_amt},#{tran_cnt},#{pay_cut},#{tran_amt})
+    </insert>
+
+    <update id="updateDailySum" parameterType="DailySum">
+        update daily_sum_sta set cust_id=#{cust_id},update_time=#{update_time},trans_date=#{trans_date},
+        surname=#{surname},tran_max_amt=#{tran_max_amt},pay_amt=#{pay_amt},tran_cnt=#{tran_cnt},
+        pay_cut=#{pay_cut},tran_amt=#{tran_amt}
+        where s_index=#{s_index}
+    </update>
+
+    <delete id="deleteDailySum" parameterType="int">
+        delete from daily_sum_sta where s_index=#{s_index}
+    </delete>
+
+</mapper>
